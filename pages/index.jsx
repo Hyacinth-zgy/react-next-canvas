@@ -17,7 +17,7 @@ export default function Home() {
 
         <p className={styles.description}>
           Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          <code className={styles.code}>MLGB-人间失格</code>
         </p>
 
         <div className={styles.grid}>
