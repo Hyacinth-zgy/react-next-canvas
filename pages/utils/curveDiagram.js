@@ -119,6 +119,7 @@ export const handleMove = (
   config,
   setPointCollection
 ) => {
+  canvasState.style.cursor = '';
   const mousePosition = {
     x: e.clientX,
     y: e.clientY,
@@ -141,6 +142,7 @@ export const handleMove = (
       5
     );
     if (ifInCircle) {
+      canvasState.style.cursor = 'pointer';
       arrPointCollection[i].r = 8;
     } else {
       arrPointCollection[i].r = 5;
@@ -160,6 +162,11 @@ const inCircle = (p, cx, cy, r) => {
 export const canvasInit = (ctx, config, pointCollection, canvasState) => {
   ctx.clearRect(0, 0, canvasState.width, canvasState.height);
   drawAxis(ctx, config);
+  if (pointCollection.length >= 2) {
+    for (let i = 0; i < pointCollection.length - 1; i++) {
+      drawingLine(ctx, pointCollection[i], pointCollection[i + 1]);
+    }
+  }
   for (let i = 0; i < pointCollection.length; i++) {
     drawPoint(
       ctx,
@@ -168,4 +175,14 @@ export const canvasInit = (ctx, config, pointCollection, canvasState) => {
       pointCollection[i].r
     );
   }
+};
+
+export const drawingLine = (ctx, p1, p2) => {
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(p1.x, p1.y);
+  ctx.lineTo(p2.x, p2.y);
+  ctx.stroke();
+  ctx.closePath();
+  ctx.restore();
 };

@@ -6,6 +6,7 @@ import {
   handleClick,
   handleMove,
   canvasInit,
+  drawingLine,
 } from '../../utils/curveDiagram';
 export default function Curvediagram() {
   const [canvasState, setCanvasState] = useState(null);
@@ -43,7 +44,6 @@ export default function Curvediagram() {
 
   useEffect(() => {
     if (!ctxObj) return;
-    console.log(pointCollection);
     canvasInit(ctxObj, config, pointCollection, canvasState);
   }, [pointCollection]);
   return (
