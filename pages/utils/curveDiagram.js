@@ -163,9 +163,10 @@ export const canvasInit = (ctx, config, pointCollection, canvasState) => {
   ctx.clearRect(0, 0, canvasState.width, canvasState.height);
   drawAxis(ctx, config);
   if (pointCollection.length >= 2) {
-    for (let i = 0; i < pointCollection.length - 1; i++) {
-      drawingLine(ctx, pointCollection[i], pointCollection[i + 1]);
-    }
+    // for (let i = 0; i < pointCollection.length - 1; i++) {
+    //   drawingLine(ctx, pointCollection[i], pointCollection[i + 1]);
+    // }
+    drwaSmoothLines(ctx, pointCollection);
   }
   for (let i = 0; i < pointCollection.length; i++) {
     drawPoint(
@@ -185,4 +186,53 @@ export const drawingLine = (ctx, p1, p2) => {
   ctx.stroke();
   ctx.closePath();
   ctx.restore();
+};
+
+const drwaSmoothLines = (ctx, points) => {
+  if (points.length < 2) return;
+  const f = 0.5; // 平滑相关系数
+  const t = 0.9; // 平滑相关系数
+  ctx.save();
+  ctx.beginPath();
+  // 移到第一个点的位置
+  ctx.moveTo(points[0].x, points[0].y);
+  let g = 0; // 斜率的系数，默认是0
+  let dx1 = 0; // 第一个控制点的偏移量x
+  let dy1 = 0; // 第一个控制点的偏移量y
+  let dx2 = 0; // 第二点控制点的偏移量x
+  let dy2 = 0; // 第二个控制点的偏移量y
+  let prePoint = points[0]; // 默认的前一个点
+  let nextPoint = null; // 默认的后一个点
+  for (let i = 0; i < points.length - 1; i++) {
+    let curPoint = points[i + 1]; // 当前点
+    nextPoint = points[i + 2]; // 后一个点
+    if (nextPoint) {
+      g = gradient(prePoint, curPoint); // 计算连个点的斜率
+      dx2 = (curPoint.x - prePoint.x) * -f;
+      // dy2 = dy2 * g * t;
+      dy2 = (curPoint.y - prePoint.y) * g * t;
+    } else {
+      dx2 = 0;
+      dy2 = 0;
+    }
+    ctx.bezierCurveTo(
+      prePoint.x - dx1,
+      prePoint.y - dy1,
+      curPoint.x + dx2,
+      curPoint.y + dy2,
+      curPoint.x,
+      curPoint.y
+    );
+    dx1 = dx2;
+    dy1 = dy2;
+    prePoint = curPoint;
+  }
+  ctx.stroke();
+  ctx.closePath();
+  ctx.restore();
+};
+
+// 计算a，b两点斜率的方法
+const gradient = (a, b) => {
+  return (b.y - a.y) / (b.x - a.x);
 };
