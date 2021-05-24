@@ -32,14 +32,12 @@ export default function Home() {
             <h2>柱状图&rarr;</h2>
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>折线图 &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+          <Link href="/linechartdiagram">
+            <a className={styles.card}>
+              <h2>折线图 &rarr;</h2>
+              <p>体验折线图带来的快感，拖动产生数据提示</p>
+            </a>
+          </Link>
 
           <a
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
