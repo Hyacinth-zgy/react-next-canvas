@@ -14,7 +14,6 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>欢迎来到CANVAS</h1>
-
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>MLGB-人间失格</code>
@@ -28,7 +27,7 @@ export default function Home() {
             </div>
           </Link>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
+          <a className={styles.card}>
             <h2>柱状图&rarr;</h2>
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </a>
@@ -39,28 +38,36 @@ export default function Home() {
             </a>
           </Link>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
+          <a className={styles.card}>
             <h2>饼图 &rarr;</h2>
             <p>
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
+          <Link href="/palette">
+            <a className={styles.card}>
+              <h2>调色板 &rarr;</h2>
+              <p>这是一个调色板:THIS IS THE PALETTE</p>
+            </a>
+          </Link>
+          <a className={styles.card}>
+            <h2>调色板 &rarr;</h2>
+            <p>这是一个调色板,this is the palette</p>
+          </a>
+          <a className={styles.card}>
+            <h2>调色板 &rarr;</h2>
+            <p>这是一个调色板,this is the palette</p>
+          </a>
+          <a className={styles.card}>
+            <h2>调色板 &rarr;</h2>
+            <p>这是一个调色板,this is the palette</p>
+          </a>
         </div>
       </main>
 
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
+        <a target="_blank" rel="noopener noreferrer">
+          Powered by MLGB
         </a>
       </footer>
     </div>

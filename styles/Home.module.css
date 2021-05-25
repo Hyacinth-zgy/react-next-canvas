@@ -1,6 +1,5 @@
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,10 +21,10 @@
 .footer {
   width: 100%;
   height: 100px;
-  border-top: 1px solid #eaeaea;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #30336b;
 }
 
 .footer a {
@@ -33,6 +32,7 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  color: #feca57;
 }
 
 .title a {
@@ -81,6 +81,8 @@
   flex-wrap: wrap;
   max-width: 800px;
   margin-top: 3rem;
+  max-height: 500px;
+  overflow: auto;
 }
 
 .card {
@@ -94,6 +96,7 @@
   transition: color 0.15s ease, border-color 0.15s ease;
   width: 45%;
   color: #ff6b6b;
+  background: #feca57;
 }
 
 .card:hover,
